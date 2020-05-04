@@ -2,11 +2,15 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from .functions import peticionPOST, send_email, parametros
+from .functions import peticionPOST, send_email, parametros, replace_asteriks_to_html_format_tag
 
 import json
 import urllib
 import requests
+
+
+
+
 def home(request):
     return HttpResponse('Prueba de conexion')
 
@@ -50,7 +54,7 @@ def webhook(request):
         },{
           "text": {
             "text": [
-              speech + "\n Si quieres saber otro término, solo pregúntame"
+              replace_asteriks_to_html_format_tag(speech, "b") + "\n Si quieres saber otro término, solo pregúntame"
             ]
           }
         }
@@ -83,7 +87,7 @@ def webhook(request):
       },{
           "text": {
             "text": [
-              speech + "\n" + listanombres
+               replace_asteriks_to_html_format_tag(speech, "b") + "\n" + listanombres
             ]
           }
         }
@@ -122,7 +126,7 @@ def webhook(request):
         },{
           "text": {
             "text": [
-              speech + "\n Si quieres saber otro término, solo pregúntame"
+              replace_asteriks_to_html_format_tag(speech, "b") + "\n Si quieres saber otro término, solo pregúntame"
             ]
           }
         }
@@ -155,7 +159,7 @@ def webhook(request):
       },{
           "text": {
             "text": [
-              speech + "\n" + listanombres
+               replace_asteriks_to_html_format_tag(speech, "b") + "\n" + listanombres
             ]
           }
         }
@@ -194,7 +198,7 @@ def webhook(request):
         },{
           "text": {
             "text": [
-              speech + "\n Si quieres saber otro término, solo pregúntame"
+               replace_asteriks_to_html_format_tag(speech, "b") + "\n Si quieres saber otro término, solo pregúntame"
             ]
           }
         }
@@ -228,7 +232,7 @@ def webhook(request):
       },{
           "text": {
             "text": [
-             speech + "\n" + listanombres
+              replace_asteriks_to_html_format_tag(speech, "b") + "\n" + listanombres
             ]
           }
         }

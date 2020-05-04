@@ -3,6 +3,15 @@ import json
 import urllib
 import requests
 import datetime
+from re import sub
+
+def replace_asteriks_to_html_format_tag(input_text: str, tag_name: str):
+    """Returns the input_text with the asteriks replaced with the html format tag"""
+    return sub(r"(\*){1,2}(?=[A-Za-z])|(?<=[a-z])(\*){1,2}",
+    lambda m: f"<{tag_name}>" if m.group(1) else f"</{tag_name}>", input_text)
+# Driver
+
+
 def peticionPOST(pregunta):
     payload = {"question":pregunta}
     response = requests.post(f"https://urbot.azurewebsites.net/qnamaker/knowledgebases/801d369e-aac9-4252-90c5-79ce07207970/generateAnswer", json=payload,
